@@ -1,0 +1,23 @@
+{
+  "name": "little-jesus-api",
+  "version": "1.0.0",
+  "description": "little-jesus api server",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "./rm-dist.sh && tsc",
+    "dev": "nodemon --watch src --ext ts node_modules/ts-node/dist/bin.js src/index.ts"
+  },
+  "main": "index.js",
+  "author": "min9nim",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.9.5",
+    "graphql": "^14.5.8",
+    "mongoose": "^5.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
