@@ -36,6 +36,7 @@ const typeDefs = gql`
 
   type Mutation {
     addStudent(name: String!, birth: String): Student
+    deleteStudent(_id: ObjectId!): Student
   }
 `
 
@@ -52,6 +53,10 @@ const resolvers = {
         name,
         birth
       })
+      return student
+    },
+    deleteStudent: async (_, {_id}) => {
+      const student = await models.Students.findOneAndRemove({_id})
       return student
     }
   }
