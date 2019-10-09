@@ -6,7 +6,8 @@
     "esModuleInterop": true,
     "lib": [
       "es2015",
-      "esnext"
+      "esnext",
+      "dom"
     ],
     "baseUrl": "./",
     "paths": {
@@ -46,7 +47,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "types/**/*.d.ts",
+    "types/*.d.ts"
   ],
   "exclude": []
 }
