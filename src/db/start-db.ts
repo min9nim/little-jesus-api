@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import dburl from '../db-info'
-import registerSchema from './db-schema'
+import dburl from '../../db-info'
+import registerSchema from './mongoose-schema'
 
 
 export default function startDB(){

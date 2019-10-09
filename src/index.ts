@@ -1,7 +1,7 @@
 import {ApolloServer} from 'apollo-server'
-import startDB from './start-db'
-import resolvers from './resolvers'
-import typeDefs from './type-defs'
+import startDB from './db/start-db'
+import resolvers from './graphql/resolvers'
+import typeDefs from './graphql/type-defs'
 
 startDB()
 
