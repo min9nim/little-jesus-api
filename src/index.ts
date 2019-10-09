@@ -1,18 +1,28 @@
 import {ApolloServer, gql} from 'apollo-server'
 import startDB from './start-db'
+import {models} from 'mongoose'
 
 const typeDefs = gql`
+  "Mongo object id scalar type"
+  scalar ObjectId
+
+  "The javascript 'Date' as string. Type represents date and time as the ISO Date string."
+  scalar DateTime
+
   type Teacher {
+    _id: ObjectId!
     name: String
     students: [Student]
   }
 
   type Student {
-    name: String
+    _id: ObjectId!
+    name: String!
     birth: String # YYYYMMDD
   }
 
   type Point {
+    _id: ObjectId!
     owner: Student
     date: String # YYYYMMDD
     attendance: Boolean
@@ -23,22 +33,27 @@ const typeDefs = gql`
   type Query {
     students: [Student]
   }
-`
 
-const students = [
-  {
-    name: '이정우',
-    birth: '20051011'
-  },
-  {
-    name: '김하람',
-    birth: '20050104'
+  type Mutation {
+    addStudent(name: String!, birth: String): Student
   }
-]
+`
 
 const resolvers = {
   Query: {
-    students: () => students
+    students: async () => {
+      const students = await models.Students.find({})
+      return students
+    }
+  },
+  Mutation: {
+    addStudent: async (_, {name, birth}) => {
+      const student = await models.Students.create({
+        name,
+        birth
+      })
+      return student
+    }
   }
 }
 

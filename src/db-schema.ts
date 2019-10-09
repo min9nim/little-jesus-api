@@ -19,8 +19,9 @@ const pointSchema = new mongoose.Schema({
   meditation: Number,
 });
 
+
 export default function registerSchema(){
-  mongoose.model('Teachers', teacherSchema);
+  mongoose.model('Teachers', teacherSchema),
   mongoose.model('Students', studentSchema);
   mongoose.model('Points', pointSchema);  
 }
