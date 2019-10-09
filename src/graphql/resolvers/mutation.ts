@@ -1,4 +1,5 @@
 import {models} from 'mongoose'
+import {exclude, isNil} from '~/utils'
 
 export default {
   async addStudent(_, {name, birth}) {
@@ -13,7 +14,7 @@ export default {
     return student
   },
   async modifyStudent(_, {_id, name, birth}){
-    const student = await models.Students.findOneAndUpdate({_id}, {name, birth})
+    const student = await models.Students.findOneAndUpdate({_id}, exclude(isNil)({name, birth}))
     return student
   }
 }

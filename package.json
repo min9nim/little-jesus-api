@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "./rm-dist.sh && tsc",
-    "dev": "ts-node src/index.ts",
-    "dev-mon": "nodemon --watch src --ext ts node_modules/ts-node/dist/bin.js src/index.ts"
+    "dev": "ts-node -r tsconfig-paths/register src/index.ts",
+    "dev-mon": "nodemon --watch src --ext ts node_modules/ts-node/dist/bin.js -r tsconfig-paths/register src/index.ts"
   },
   "main": "index.js",
   "author": "min9nim",
@@ -19,9 +19,11 @@
   },
   "devDependencies": {
     "@types/mongoose": "^5.5.19",
+    "@types/node": "^12.7.12",
     "@types/ramda": "^0.26.28",
     "nodemon": "^1.19.3",
     "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.6.3"
   }
 }
