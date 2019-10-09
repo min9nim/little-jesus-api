@@ -5,7 +5,7 @@ export default {
   async addStudent(_, {name, birth}) {
     const student = await models.Students.create({
       name,
-      birth
+      birth,
     })
     return student
   },
@@ -13,8 +13,8 @@ export default {
     const student = await models.Students.findOneAndRemove({_id})
     return student
   },
-  async modifyStudent(_, {_id, name, birth}){
+  async modifyStudent(_, {_id, name, birth}) {
     const student = await models.Students.findOneAndUpdate({_id}, exclude(isNil)({name, birth}))
     return student
-  }
+  },
 }
