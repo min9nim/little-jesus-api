@@ -2,4 +2,4 @@ node_modules/
 dist/
 
 .DS_Stroe
-db-info.ts
+# db-info.ts
