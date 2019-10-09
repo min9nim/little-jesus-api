@@ -1,2 +1,15 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});
+import mongoose from 'mongoose'
+import dburl from '../db-info'
+import registerSchema from './db-schema'
+
+
+export default function startDB(){
+  registerSchema()
+  mongoose.connect(dburl, {useNewUrlParser: true});
+}
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'DB connection error:'));
+db.once('open', function() {
+  console.log('DB connected')
+});
