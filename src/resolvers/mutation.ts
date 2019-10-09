@@ -1,15 +1,19 @@
 import {models} from 'mongoose'
 
 export default {
-  addStudent: async (_, {name, birth}) => {
+  async addStudent(_, {name, birth}) {
     const student = await models.Students.create({
       name,
       birth
     })
     return student
   },
-  deleteStudent: async (_, {_id}) => {
+  async deleteStudent(_, {_id}) {
     const student = await models.Students.findOneAndRemove({_id})
+    return student
+  },
+  async modifyStudent(_, {_id, name, birth}){
+    const student = await models.Students.findOneAndUpdate({_id}, {name, birth})
     return student
   }
 }

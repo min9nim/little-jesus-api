@@ -35,5 +35,6 @@ export default gql`
   type Mutation {
     addStudent(name: String!, birth: String): Student
     deleteStudent(_id: ObjectId!): Student
+    modifyStudent(_id: ObjectId!, name: String, birth: String): Student
   }
 `
