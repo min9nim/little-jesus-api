@@ -4,9 +4,9 @@
   "builds": [{ "src": "dist/**/*.js", "use": "@now/node" }],
   "routes": [
     {
-      "src": "/graphql",
-      "dest": "dist/src/index.js",
-      "methods": ["POST", "OPTIONS"],
+      "src": "/",
+      "dest": "/",
+      "methods": ["POST", "OPTIONS", "GET"],
       "headers": {
         "Access-Control-Allow-Origin": "*"
       }
