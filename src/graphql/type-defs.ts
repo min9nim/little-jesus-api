@@ -30,11 +30,15 @@ export default gql`
 
   type Query {
     students: [Student]
+    teachers: [Teacher]
   }
 
   type Mutation {
-    addStudent(name: String!, birth: String): Student
-    deleteStudent(_id: ObjectId!): Student
-    modifyStudent(_id: ObjectId!, name: String, birth: String): Student
+    createTeacher(name: String!): Teacher
+    createStudent(name: String!, birth: String): Student
+    removeStudent(_id: ObjectId!): Student
+    updateStudent(_id: ObjectId!, name: String, birth: String): Student
+    addStudentToTeacher(teacherName: String! studentName: String!): Teacher
+    updateTeacher(_id: ObjectId! name: String students: [ObjectId]): Teacher
   }
 `
