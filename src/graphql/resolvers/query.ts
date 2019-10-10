@@ -9,4 +9,8 @@ export default {
     const teachers = await models.Teachers.find({})
     return teachers
   },
+  async points() {
+    const result = await models.Points.find({})
+    return result
+  },
 }

@@ -9,7 +9,7 @@ export default gql`
 
   type Teacher {
     _id: ObjectId!
-    name: String
+    name: String!
     students: [Student]
   }
 
@@ -31,14 +31,18 @@ export default gql`
   type Query {
     students: [Student]
     teachers: [Teacher]
+    points: [Point]
   }
 
   type Mutation {
+    addStudentToTeacher(teacherName: String!, studentName: String!): Teacher
     createTeacher(name: String!): Teacher
     createStudent(name: String!, birth: String): Student
+    createPoint(owner: ObjectId!, date: String!, attendance: Boolean, recitation: Boolean, meditation: Int): Point
+    removePoint(_id: ObjectId!): Point
     removeStudent(_id: ObjectId!): Student
     updateStudent(_id: ObjectId!, name: String, birth: String): Student
-    addStudentToTeacher(teacherName: String! studentName: String!): Teacher
-    updateTeacher(_id: ObjectId! name: String students: [ObjectId]): Teacher
+    updateTeacher(_id: ObjectId!, name: String, students: [ObjectId]): Teacher
+    updatePoint(_id: ObjectId!, owner: ObjectId, date: String, attendance: Boolean, recitation: Boolean, meditation: Int): Point
   }
 `
