@@ -1,11 +1,11 @@
 {
   "public": true,
   "version": 2,
-  "builds": [{ "src": "dist/src/index.js", "use": "@now/node-server" }],
+  "builds": [{ "src": "dist/**/*.js", "use": "@now/node" }],
   "routes": [
     {
       "src": "/graphql",
-      "dest": "/dist/src/index.js",
+      "dest": "dist/src/index.js",
       "methods": ["POST", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*"

@@ -1,5 +1,6 @@
 import {models} from 'mongoose'
-import {exclude, isNil, omit} from '~/utils'
+// import {exclude, isNil, omit} from '~/utils'     // FIXME now 환경에서 ~ 별칭을 못찾네;
+import {exclude, isNil, omit} from '../../utils'
 
 export default {
   async addStudentToTeacher(_, {teacherName, studentName}) {
