@@ -2,7 +2,7 @@ import mongoose, {Schema} from 'mongoose'
 
 const teacherSchema = new mongoose.Schema({
   name: String,
-  students: [String],
+  students: [{type: Schema.Types.ObjectId, ref: 'Students'}],
 });
 
 const studentSchema = new mongoose.Schema({
@@ -23,7 +23,7 @@ const pointSchema = new mongoose.Schema({
 export default function registerSchema(){
   mongoose.model('Teachers', teacherSchema),
   mongoose.model('Students', studentSchema);
-  mongoose.model('Points', pointSchema);  
+  mongoose.model('Points', pointSchema);
 }
 
 
