@@ -11,5 +11,5 @@ export default function startDB(){
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DB connection error:'));
 db.once('open', function() {
-  console.log('DB connected')
+  console.log('mongoDB connected successfully')
 });
