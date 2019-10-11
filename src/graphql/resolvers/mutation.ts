@@ -3,7 +3,7 @@ import {models} from 'mongoose'
 import {exclude, isNil, omit} from '../../utils'
 
 export default {
-  async addStudentToTeacher(_, {teacherName, studentName}) {
+  async addStudentToTeacherByName(_, {teacherName, studentName}) {
     const student = await models.Students.findOne({name: studentName})
     if (!student) {
       throw Error('student not found')

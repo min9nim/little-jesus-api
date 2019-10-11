@@ -35,7 +35,7 @@ export default gql`
   }
 
   type Mutation {
-    addStudentToTeacher(teacherName: String!, studentName: String!): Teacher
+    addStudentToTeacherByName(teacherName: String!, studentName: String!): Teacher
     createTeacher(name: String!): Teacher
     createStudent(name: String!, birth: String): Student
     createPoint(owner: ObjectId!, date: String!, attendance: Boolean, recitation: Boolean, meditation: Int): Point
