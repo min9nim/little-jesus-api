@@ -1,11 +1,11 @@
 {
   "public": true,
   "version": 2,
-  "builds": [{ "src": "dist/**/*.js", "use": "@now/node" }],
+  "builds": [{ "src": "src/**/*.ts", "use": "@now/node@canary" }],
   "routes": [
     {
       "src": "/",
-      "dest": "/dist/src/index.js",
+      "dest": "src/index.ts",
       "methods": ["POST", "OPTIONS", "GET"],
       "headers": {
         "Access-Control-Allow-Origin": "*"
