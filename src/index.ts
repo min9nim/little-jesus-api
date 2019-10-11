@@ -3,9 +3,9 @@ import startDB from './db/start-db'
 import resolvers from './graphql/resolvers'
 import typeDefs from './graphql/type-defs'
 
-startDB()
+// startDB()
 
-const server = new ApolloServer({typeDefs, resolvers})
+const server = new ApolloServer({typeDefs, resolvers, introspection: true, playground: true})
 const port = process.env.PORT || 4040
 server.listen({port}).then(({url}) => {
   console.log(`🚀  Server ready at ${url}`)
