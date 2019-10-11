@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo "remove dist folder"
+
 file="dist"
 if [ -d "$file" ]
 then
