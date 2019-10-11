@@ -4,7 +4,7 @@
   "description": "little-jesus api server",
   "scripts": {
     "start": "node -r ./start.prod.js dist/src/index.js",
-    "build": "./rm-dist.sh && node_modules/typescript/bin/tsc",
+    "build": "./rm-dist.sh && ./node_modules/typescript/bin/tsc",
     "dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev-mon": "nodemon --watch src --ext ts node_modules/ts-node/dist/bin.js -r tsconfig-paths/register src/index.ts"
   },
