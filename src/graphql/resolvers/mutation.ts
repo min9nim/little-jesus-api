@@ -33,6 +33,10 @@ export default {
     const student = await models.Students.findOneAndRemove({_id})
     return student
   },
+  async removeStudentByName(_, {name}) {
+    const student = await models.Students.findOneAndRemove({name})
+    return student
+  },
   async removePoint(_, {_id}) {
     const point = await models.Points.findOneAndRemove({_id})
     return point

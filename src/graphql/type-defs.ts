@@ -41,6 +41,7 @@ export default gql`
     createPoint(owner: ObjectId!, date: String!, attendance: Boolean, recitation: Boolean, meditation: Int): Point
     removePoint(_id: ObjectId!): Point
     removeStudent(_id: ObjectId!): Student
+    removeStudentByName(name: String!): Student
     updateStudent(_id: ObjectId!, name: String, birth: String): Student
     updateTeacher(_id: ObjectId!, name: String, students: [ObjectId]): Teacher
     updatePoint(_id: ObjectId!, owner: ObjectId, date: String, attendance: Boolean, recitation: Boolean, meditation: Int): Point
