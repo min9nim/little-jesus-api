@@ -25,8 +25,8 @@ export default {
     })
     return student
   },
-  async createPoint(_, {owner, date, attendance, recitation, meditation}) {
-    const point = await models.Points.create({owner, date, attendance, recitation, meditation})
+  async createPoint(_, {owner, date, attendance, visitcall, meditation, recitation, invitation, etc}) {
+    const point = await models.Points.create({owner, date, attendance, recitation, meditation, visitcall, invitation, etc})
     return point
   },
   async removeStudent(_, {_id}) {

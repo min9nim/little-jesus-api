@@ -15,8 +15,11 @@ const pointSchema = new mongoose.Schema({
   owner: {type: Schema.Types.ObjectId, ref: 'Students'},
   date: String,        // YYYYMMDD
   attendance: Boolean,
-  recitation: Boolean,
+  visitcall: Boolean,
   meditation: Number,
+  recitation: Boolean,
+  invitation: Number,
+  etc: String,
 });
 
 
