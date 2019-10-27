@@ -8,7 +8,7 @@ startDB()
 console.log('hello world')
 
 const server = new ApolloServer({typeDefs, resolvers, introspection: true, playground: true})
-const port = process.env.PORT || 4040
+const port = process.env.PORT || 5050
 server.listen({port}).then(({url}) => {
   console.log(`🚀  Server ready at ${url}`)
 })
