@@ -15,4 +15,10 @@ export default {
       return student
     },
   },
+  Student: {
+    teacher: async ({_id}) => {
+      const teacher = await models.Teachers.findOne({students: _id}).exec()
+      return teacher
+    },
+  },
 }

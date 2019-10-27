@@ -17,6 +17,7 @@ export default gql`
     _id: ObjectId!
     name: String!
     birth: String # YYYYMMDD
+    teacher: Teacher
   }
 
   type Point {
@@ -38,12 +39,31 @@ export default gql`
     addStudentToTeacherByName(teacherName: String!, studentName: String!): Teacher
     createTeacher(name: String!): Teacher
     createStudent(name: String!, birth: String): Student
-    createPoint(owner: ObjectId!, date: String!, attendance: Boolean, recitation: Boolean, meditation: Int): Point
+    createPoint(
+      owner: ObjectId!
+      date: String!
+      attendance: Boolean
+      visitcall: Boolean
+      meditation: Int
+      recitation: Boolean
+      invitation: Int
+      etc: String
+    ): Point
     removePoint(_id: ObjectId!): Point
     removeStudent(_id: ObjectId!): Student
     removeStudentByName(name: String!): Student
     updateStudent(_id: ObjectId!, name: String, birth: String): Student
     updateTeacher(_id: ObjectId!, name: String, students: [ObjectId]): Teacher
-    updatePoint(_id: ObjectId!, owner: ObjectId, date: String, attendance: Boolean, recitation: Boolean, meditation: Int): Point
+    updatePoint(
+      _id: ObjectId!
+      owner: ObjectId
+      date: String
+      attendance: Boolean
+      visitcall: Boolean
+      meditation: Int
+      recitation: Boolean
+      invitation: Int
+      etc: String
+    ): Point
   }
 `
