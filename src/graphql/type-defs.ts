@@ -25,7 +25,7 @@ export default gql`
     owner: Student
     date: String # YYYYMMDD
     attendance: Boolean
-    visitcall: Int
+    visitcall: Boolean
     meditation: Int
     recitation: Boolean
     invitation: Int
