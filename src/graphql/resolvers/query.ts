@@ -10,9 +10,12 @@ export default {
     const teachers = await models.Teachers.find({})
     return teachers
   },
-  async points(_, {teacherId}) {
-    console.log({teacherId})
-    let result = await models.Points.find({})
+  async points(_, {teacherId, date}){
+    let condition = {}
+    if(date){
+      Object.assign(condition, {date})
+    }
+    let result = await models.Points.find(condition)
     if(teacherId){
       const teacher = await models.Teachers.findOne({_id: teacherId})
       const pred: any = includes(__, teacher.students)

@@ -35,7 +35,7 @@ export default gql`
   type Query {
     students: [Student]
     teachers: [Teacher]
-    points(teacherId: ObjectId): [Point]
+    points(teacherId: ObjectId date: String): [Point]
     # pointsByTeacherName(teacherName: name!): [Point]
   }
 
