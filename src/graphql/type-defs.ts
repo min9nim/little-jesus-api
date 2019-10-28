@@ -35,7 +35,8 @@ export default gql`
   type Query {
     students: [Student]
     teachers: [Teacher]
-    points: [Point]
+    points(teacherId: ObjectId): [Point]
+    # pointsByTeacherName(teacherName: name!): [Point]
   }
 
   type Mutation {

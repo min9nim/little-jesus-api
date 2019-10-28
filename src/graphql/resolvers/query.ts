@@ -1,4 +1,5 @@
 import {models} from 'mongoose'
+import {__, includes} from 'ramda'
 
 export default {
   async students() {
@@ -9,8 +10,16 @@ export default {
     const teachers = await models.Teachers.find({})
     return teachers
   },
-  async points() {
-    const result = await models.Points.find({})
+  async points(_, {teacherId}) {
+    console.log({teacherId})
+    let result = await models.Points.find({})
+    if(teacherId){
+      const teacher = await models.Teachers.findOne({_id: teacherId})
+      const pred: any = includes(__, teacher.students)
+      result = result.filter(point => {
+        return pred(point.owner)
+      })
+    }
     return result
   },
 }
