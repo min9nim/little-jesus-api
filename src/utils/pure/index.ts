@@ -14,7 +14,7 @@ export function esModule(_module: any) {
   return _module.default || _module
 }
 
-export function removeExt(file) {
+export function removeExt(file: string) {
   return file.replace(/\.(\w*)$/, '')
 }
 
@@ -25,7 +25,7 @@ export function getFileName(path, ext = false) {
   return ext ? name : removeExt(name)
 }
 
-export function nl2br(str) {
+export function nl2br(str: string) {
   if (!str) {
     return ''
   }
@@ -55,7 +55,7 @@ export const getQueryParams = (url: string): IQueryParam => {
   return params
 }
 
-export const setQueryParams = paramObj => {
+export const setQueryParams = (paramObj: any) => {
   const params = Object.entries(paramObj)
     .map(([key, value]) => {
       let valueStr = value
@@ -69,13 +69,13 @@ export const setQueryParams = paramObj => {
 }
 
 export const assignQueryParams = (url: string) => {
-  return paramObj => {
+  return (paramObj: any) => {
     setQueryParams(Object.assign([], getQueryParams(url), paramObj))
   }
 }
 
-export function delay(fn, ms): Promise<any> {
-  return new Promise(resolve => {
+export function delay(fn: any, ms: number): Promise<any> {
+  return new Promise((resolve: any) => {
     const timeout = setTimeout(() => {
       fn()
       resolve(timeout)
@@ -83,7 +83,7 @@ export function delay(fn, ms): Promise<any> {
   })
 }
 
-export function onlyNumber(event) {
+export function onlyNumber(event: any) {
   if (event.keyCode < 48 || event.keyCode > 57) {
     event.returnValue = false
   }
@@ -93,14 +93,14 @@ export function numberWithCommas(num: number) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-export function address({clientPostCode, clientAddress1, clientAddress2}) {
+export function address({clientPostCode, clientAddress1, clientAddress2}: any) {
   const postcode = clientPostCode ? '(' + clientPostCode + ') ' : ''
   const address1 = clientAddress1 || ''
   const address2 = clientAddress2 || ''
   return postcode + address1 + ' ' + address2
 }
 
-export function enableUrl(str): string {
+export function enableUrl(str: string): string {
   if (!str) {
     return ''
   }
@@ -115,7 +115,7 @@ export function enableUrl(str): string {
   return str
 }
 
-export function removeTypeName(obj) {
+export function removeTypeName(obj: any) {
   if (!obj || typeof obj !== 'object') {
     return
   }
