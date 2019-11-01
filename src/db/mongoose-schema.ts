@@ -24,6 +24,7 @@ const pointSchema = new mongoose.Schema({
 const pointItemSchema = new mongoose.Schema({
   label: String,
   type: String,
+  priority: Number,
   disable: Boolean,
 });
 
