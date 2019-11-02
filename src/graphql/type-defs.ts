@@ -45,6 +45,7 @@ export default gql`
     removeStudentToTeacherByName(teacherName: String!, studentName: String!): Teacher
     removeStudentToTeacher(teacherId: ObjectId!, studentId: ObjectId!): Teacher
     createTeacher(name: String!): Teacher
+    removeTeacher(_id: ObjectId!): Teacher
     createStudent(name: String!, birth: String): Student
     createPoint(
       owner: ObjectId!

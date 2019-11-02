@@ -43,6 +43,10 @@ export default {
     const teacher = await models.Teachers.create({name, students: []})
     return teacher
   },
+  async removeTeacher(_, {_id}) {
+    const teacher = await models.Teachers.findOneAndRemove({_id})
+    return teacher
+  },
   async createStudent(_, {name, birth}) {
     const student = await models.Students.create({
       name,
