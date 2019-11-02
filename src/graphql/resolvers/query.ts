@@ -18,6 +18,10 @@ export default {
     let result = await models.Points.find(condition)
     if(teacherId){
       const teacher = await models.Teachers.findOne({_id: teacherId})
+      if(!teacher){
+        console.warn(`Not found teacher[${teacherId}]`)
+        return []
+      }
       const pred: any = includes(__, teacher.students)
       result = result.filter(point => {
         return pred(point.owner)
