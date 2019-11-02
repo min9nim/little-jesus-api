@@ -12,6 +12,9 @@
       }
     }
   ],
+  "github": {
+    "autoJobCancelation": false
+  },
   "env": {
     "dburl_dev": "@little-jesus-dburl-dev",
     "dburl": "@little-jesus-dburl"
