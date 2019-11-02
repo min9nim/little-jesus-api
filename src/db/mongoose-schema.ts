@@ -1,5 +1,11 @@
 import mongoose, {Schema} from 'mongoose'
 
+const classSchema = new mongoose.Schema({
+  year: String,
+  teacher: {type: Schema.Types.ObjectId, ref: 'Teachers'},
+  students: [{type: Schema.Types.ObjectId, ref: 'Students'}],
+})
+
 const teacherSchema = new mongoose.Schema({
   name: String,
   students: [{type: Schema.Types.ObjectId, ref: 'Students'}],
@@ -30,6 +36,7 @@ const pointItemSchema = new mongoose.Schema({
 
 
 export default function registerSchema(){
+  mongoose.model('Classes', classSchema),
   mongoose.model('Teachers', teacherSchema),
   mongoose.model('Students', studentSchema);
   mongoose.model('Points', pointSchema);
