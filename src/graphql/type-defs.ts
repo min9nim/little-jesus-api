@@ -41,6 +41,7 @@ export default gql`
 
   type Mutation {
     addStudentToTeacherByName(teacherName: String!, studentName: String!): Teacher
+    removeStudentToTeacherByName(teacherName: String!, studentName: String!): Teacher
     createTeacher(name: String!): Teacher
     createStudent(name: String!, birth: String): Student
     createPoint(

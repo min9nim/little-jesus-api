@@ -11,5 +11,9 @@
         "Access-Control-Allow-Origin": "*"
       }
     }
-  ]
+  ],
+  "env": {
+    "dburl_dev": "@little-jesus-dburl-dev",
+    "dburl": "@little-jesus-dburl"
+  }
 }

@@ -2,4 +2,5 @@ node_modules/
 dist/
 .vscode/*
 .DS_Stroe
+dev-start.sh
 # db-info.ts

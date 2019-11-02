@@ -1,1 +1,0 @@
-export default 'mongodb://admin:admin123@ds333098.mlab.com:33098/little-jesus'

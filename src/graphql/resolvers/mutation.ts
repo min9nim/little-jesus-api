@@ -14,6 +14,17 @@ export default {
     }
     return teacher
   },
+  async removeStudentToTeacherByName(_, {teacherName, studentName}) {
+    const student = await models.Students.findOne({name: studentName})
+    if (!student) {
+      throw Error('student not found')
+    }
+    const teacher = await models.Teachers.findOneAndUpdate({name: teacherName}, {$pull: {students: student._id}}, {new: true})
+    if (!teacher) {
+      throw Error('teacher not found')
+    }
+    return teacher
+  },
   async createTeacher(_, {name}) {
     const teacher = await models.Teachers.create({name, students: []})
     return teacher
