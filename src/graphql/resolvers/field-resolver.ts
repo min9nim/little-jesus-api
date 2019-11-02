@@ -6,6 +6,9 @@ export default {
       const teacher = await models.Teachers.findOne({_id})
         .populate('students')
         .exec()
+      if(!teacher){
+        return []
+      }
       return teacher.students
     },
   },
