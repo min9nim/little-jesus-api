@@ -14,12 +14,26 @@ export default {
     }
     return teacher
   },
+  async addStudentToTeacher(_, {teacherId, studentId}) {
+    const teacher = await models.Teachers.findOneAndUpdate({_id: teacherId}, {$push: {students: studentId}}, {new: true})
+    if (!teacher) {
+      throw Error('teacher not found')
+    }
+    return teacher
+  },
   async removeStudentToTeacherByName(_, {teacherName, studentName}) {
     const student = await models.Students.findOne({name: studentName})
     if (!student) {
       throw Error('student not found')
     }
     const teacher = await models.Teachers.findOneAndUpdate({name: teacherName}, {$pull: {students: student._id}}, {new: true})
+    if (!teacher) {
+      throw Error('teacher not found')
+    }
+    return teacher
+  },
+  async removeStudentToTeacher(_, {teacherId, studentId}) {
+    const teacher = await models.Teachers.findOneAndUpdate({_id: teacherId}, {$pull: {students: studentId}}, {new: true})
     if (!teacher) {
       throw Error('teacher not found')
     }
