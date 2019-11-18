@@ -93,4 +93,9 @@ export default {
     const point = await models.Points.findOneAndUpdate({_id: args._id}, tobe, {new: true})
     return point
   },
+  async updatePointMenu(_, args) {
+    const tobe = exclude(isNil)(omit(['_id'], args))
+    const pointMenu = await models.PointMenus.findOneAndUpdate({_id: args._id}, tobe, {new: true})
+    return pointMenu
+  },
 }
