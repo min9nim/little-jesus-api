@@ -24,6 +24,7 @@ const pointSchema = new mongoose.Schema({
   meditation: Number,
   recitation: Boolean,
   invitation: Number,
+  items: [{type: Schema.Types.ObjectId, ref: 'PointItems'}],
   etc: String,
 });
 
@@ -31,9 +32,9 @@ const pointItemSchema = new mongoose.Schema({
   label: String,
   type: String,
   priority: Number,
+  hidden: Boolean,
   disable: Boolean,
 });
-
 
 export default function registerSchema(){
   mongoose.model('Classes', classSchema),
