@@ -31,7 +31,7 @@ const pointSchema = new mongoose.Schema({
   etc: String,
 });
 
-const pointItemSchema = new mongoose.Schema({
+const pointMenuSchema = new mongoose.Schema({
   label: String,
   type: String,
   priority: Number,
@@ -44,7 +44,7 @@ export default function registerSchema(){
   mongoose.model('Teachers', teacherSchema),
   mongoose.model('Students', studentSchema);
   mongoose.model('Points', pointSchema);
-  mongoose.model('PointItems', pointItemSchema);
+  mongoose.model('PointMenus', pointMenuSchema);
 }
 
 
