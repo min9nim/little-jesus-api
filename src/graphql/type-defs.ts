@@ -98,6 +98,7 @@ export default gql`
       etc: String
     ): Point
     updatePointMenu(
+      _id: ObjectId!
       label: String
       type: String
       priority: Int
