@@ -52,6 +52,7 @@ export default gql`
     teachers: [Teacher]
     points(teacherId: ObjectId date: String): [Point]
     # pointsByTeacherName(teacherName: name!): [Point]
+    pointMenus: [PointMenu]
   }
 
   type Mutation {
@@ -72,7 +73,15 @@ export default gql`
       invitation: Int
       etc: String
     ): Point
+    createPointMenu(
+      label: String!
+      type: String
+      priority: Int
+    ): PointMenu
     removePoint(_id: ObjectId!): Point
+    removePointMenu(
+      _id: ObjectId!
+    ): PointMenu
     removeStudent(_id: ObjectId!): Student
     removeStudentByName(name: String!): Student
     updateStudent(_id: ObjectId!, name: String, birth: String): Student
@@ -88,5 +97,12 @@ export default gql`
       invitation: Int
       etc: String
     ): Point
+    updatePointMenu(
+      label: String
+      type: String
+      priority: Int
+      hidden: Boolean
+      disable: Boolean
+    ): PointMenu
   }
 `
