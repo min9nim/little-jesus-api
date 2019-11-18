@@ -29,7 +29,22 @@ export default gql`
     meditation: Int
     recitation: Boolean
     invitation: Int
+    items: [PointItem]
     etc: String
+  }
+
+  type PointItem {
+    type: ObjectId!
+    value: Int!
+  }
+
+  type PointMenu {
+    _id: ObjectId!
+    label: String
+    type: String
+    priority: Int
+    hidden: Boolean
+    disable: Boolean
   }
 
   type Query {

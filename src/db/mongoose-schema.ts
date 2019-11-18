@@ -24,7 +24,10 @@ const pointSchema = new mongoose.Schema({
   meditation: Number,
   recitation: Boolean,
   invitation: Number,
-  items: [{type: Schema.Types.ObjectId, ref: 'PointItems'}],
+  items: [{
+    type: {type: Schema.Types.ObjectId, ref: 'PointItems'},
+    value: Number,
+  }],
   etc: String,
 });
 
