@@ -5,8 +5,6 @@ import typeDefs from './graphql/type-defs'
 
 startDB()
 
-console.log('hello world')
-
 const server = new ApolloServer({typeDefs, resolvers, introspection: true, playground: true})
 const port = process.env.PORT || 5050
 server.listen({port}).then(({url}) => {
