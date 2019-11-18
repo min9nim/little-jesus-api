@@ -47,6 +47,10 @@ export default {
     const teacher = await models.Teachers.findOneAndRemove({_id})
     return teacher
   },
+  async removePointMenu(_, {_id}) {
+    const pointMenu = await models.PointMenus.findOneAndRemove({_id})
+    return pointMenu
+  },
   async createStudent(_, {name, birth}) {
     const student = await models.Students.create({
       name,
@@ -57,6 +61,10 @@ export default {
   async createPoint(_, {owner, date, attendance, visitcall, meditation, recitation, invitation, etc}) {
     const point = await models.Points.create({owner, date, attendance, recitation, meditation, visitcall, invitation, etc})
     return point
+  },
+  async createPointMenu(_, {label, type, priority, hidden = false, disable = false}) {
+    const pointMenu = await models.PointMenus.create({label, type, priority, hidden, disable})
+    return pointMenu
   },
   async removeStudent(_, {_id}) {
     const student = await models.Students.findOneAndRemove({_id})
