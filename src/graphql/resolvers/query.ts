@@ -29,4 +29,8 @@ export default {
     }
     return result
   },
+  async pointMenus() {
+    const pointMenus = await models.PointMenus.find({})
+    return pointMenus
+  },
 }
