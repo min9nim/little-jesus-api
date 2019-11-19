@@ -30,7 +30,7 @@ export default {
     return result
   },
   async pointMenus() {
-    const pointMenus = await models.PointMenus.find({})
+    const pointMenus = await models.PointMenus.find({disable: false})
     return pointMenus
   },
 }
