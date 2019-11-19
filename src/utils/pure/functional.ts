@@ -193,3 +193,30 @@ export const indexMap = (...args) => {
   }
   return Array.prototype.map.call(args[1], args[0])
 }
+
+
+export const idEqual = propEq('_id')
+
+export const findById = pipe(idEqual, find)
+
+export const updateBy = curry((pred, tobe) => {
+  return (list) => {
+    const index = findIndex(pred)(list)
+    return update(index, tobe)(list)
+  }
+})
+
+export const removeBy = (pred) => {
+  return (list) => {
+    const index = findIndex(pred)(list)
+    return remove(index, 1)(list)
+  }
+}
+
+export const updateById = curry((id, tobe, list) => {
+  return updateBy(idEqual(id))(tobe)(list)
+})
+
+export const removeById = curry((id, list) => {
+  return removeBy(idEqual(id))(list)
+})
