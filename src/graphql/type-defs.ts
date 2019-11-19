@@ -77,6 +77,7 @@ export default gql`
       label: String!
       type: String
       priority: Int
+      hidden: Boolean
     ): PointMenu
     removePoint(_id: ObjectId!): Point
     removePointMenu(
