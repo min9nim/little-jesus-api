@@ -92,11 +92,7 @@ export default gql`
       _id: ObjectId!
       owner: ObjectId
       date: String
-      attendance: Boolean
-      visitcall: Boolean
-      meditation: Int
-      recitation: Boolean
-      invitation: Int
+      items: [PointItemArg!]!
       etc: String
     ): Point
     updatePointMenu(
