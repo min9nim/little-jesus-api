@@ -58,8 +58,8 @@ export default {
     })
     return student
   },
-  async createPoint(_, {owner, date, attendance, visitcall, meditation, recitation, invitation, etc}) {
-    const point = await models.Points.create({owner, date, attendance, recitation, meditation, visitcall, invitation, etc})
+  async createPoint(_, {owner, date, items, etc}) {
+    const point = await models.Points.create({owner, date, items, etc})
     return point
   },
   async createPointMenu(_, {label, type, priority, hidden = false, disable = false}) {

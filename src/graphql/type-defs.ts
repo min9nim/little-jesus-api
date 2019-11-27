@@ -55,6 +55,11 @@ export default gql`
     pointMenus: [PointMenu]
   }
 
+  input PointItemArg {
+    type: ObjectId!
+    value: Int!
+  }
+
   type Mutation {
     addStudentToTeacherByName(teacherName: String!, studentName: String!): Teacher
     addStudentToTeacher(teacherId: ObjectId!, studentId: ObjectId!): Teacher
@@ -66,11 +71,7 @@ export default gql`
     createPoint(
       owner: ObjectId!
       date: String!
-      attendance: Boolean
-      visitcall: Boolean
-      meditation: Int
-      recitation: Boolean
-      invitation: Int
+      items: [PointItemArg!]!
       etc: String
     ): Point
     createPointMenu(
