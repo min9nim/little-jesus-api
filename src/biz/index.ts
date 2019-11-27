@@ -19,17 +19,17 @@ const asis = {
 
 
 export function buildItemsField(asis){
-  if(asis.items){
+  if(asis.items.length > 0){
     return asis
   }
 	return {...asis, items: [
     {
       type: '5dd2f8abef21600f31538547',
-      value: asis.attendance,
+      value: asis.attendance ? 1 : 0,
     },
     {
       type: '5dd2f9ffcded1c10b89e3ce2',
-      value: asis.visitcall,
+      value: asis.visitcall ? 1 : 0,
     },
     {
       type: '5dd2fb28602a3211f5543d82',
@@ -41,7 +41,7 @@ export function buildItemsField(asis){
     },
     {
       type: '5dd2fb5d602a3211f5543d84',
-      value: asis.recitation,
+      value: asis.recitation ? 1 : 0,
     },
   ]}
 }

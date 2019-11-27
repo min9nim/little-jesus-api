@@ -16,7 +16,7 @@ export default {
     if(date){
       Object.assign(condition, {date})
     }
-    let result = await models.Points.find(condition)
+    let result = await models.Points.find(condition).lean()
     if(teacherId){
       const teacher = await models.Teachers.findOne({_id: teacherId})
       if(!teacher){
