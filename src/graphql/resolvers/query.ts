@@ -1,5 +1,5 @@
 import {models} from 'mongoose'
-import {__, includes} from 'ramda'
+import {__, includes, pipe, prop} from 'ramda'
 
 export default {
   async students() {
@@ -22,10 +22,8 @@ export default {
         console.warn(`Not found teacher[${teacherId}]`)
         return []
       }
-      const pred: any = includes(__, teacher.students)
-      result = result.filter(point => {
-        return pred(point.owner)
-      })
+      const pred: any = pipe<any, string, boolean>(prop('owner'), includes(__, teacher.students) as any)
+      result = result.filter(pred)
     }
     return result
   },
