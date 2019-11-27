@@ -33,11 +33,11 @@ export function buildItemsField(asis){
     },
     {
       type: '5dd2fb28602a3211f5543d82',
-      value: asis.invitation,
+      value: asis.invitation || 0,
     },
     {
       type: '5dd2fb36602a3211f5543d83',
-      value: asis.meditation,
+      value: asis.meditation || 0,
     },
     {
       type: '5dd2fb5d602a3211f5543d84',
