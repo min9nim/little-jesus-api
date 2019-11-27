@@ -24,4 +24,10 @@ export default {
       return teacher
     },
   },
+  PointItem: {
+    async type({type}) {
+      const pointMenu = await models.PointMenus.findOne({_id: type}).exec()
+      return pointMenu
+    },
+  }
 }

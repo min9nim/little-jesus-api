@@ -34,7 +34,7 @@ export default gql`
   }
 
   type PointItem {
-    type: ObjectId!
+    type: PointMenu!
     value: Int!
   }
 
