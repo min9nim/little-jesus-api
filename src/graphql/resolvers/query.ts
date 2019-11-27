@@ -1,5 +1,6 @@
 import {models} from 'mongoose'
 import {__, includes, pipe, prop} from 'ramda'
+import {buildItemsField} from '../../biz'
 
 export default {
   async students() {
@@ -25,7 +26,7 @@ export default {
       const pred: any = pipe<any, string, boolean>(prop('owner'), includes(__, teacher.students) as any)
       result = result.filter(pred)
     }
-    return result
+    return result.map(buildItemsField)
   },
   async pointMenus() {
     const pointMenus = await models.PointMenus.find({disable: false})
