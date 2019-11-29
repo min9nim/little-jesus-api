@@ -1,6 +1,7 @@
 import {models} from 'mongoose'
 import {__, includes, pipe, prop} from 'ramda'
 import {buildItemsField} from '../../biz'
+import {flatLog} from '@mgsong/min-utils'
 
 export default {
   async students() {
@@ -26,7 +27,10 @@ export default {
       const pred: any = pipe<any, string, boolean>(prop('owner'), includes(__, teacher.students) as any)
       result = result.filter(pred)
     }
-    return result.map(buildItemsField)
+    const pointMenus = await models.PointMenus.find({disable: false}).lean()
+    // console.log({pointMenus})
+    const buildItems = buildItemsField(pointMenus)
+    return result.map(buildItems)
   },
   async pointMenus() {
     const pointMenus = await models.PointMenus.find({disable: false})
