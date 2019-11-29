@@ -4,3 +4,4 @@ dist/
 .DS_Stroe
 dev-start.sh
 # db-info.ts
+yarn-error.log
