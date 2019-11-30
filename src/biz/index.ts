@@ -27,7 +27,6 @@ export function buildItemsField(pointMenus){
     let result = point
     if(!point.items){
       result.items = []
-      return result
     }
     // if(point.items! || point.items.length === 0){
     //   // 옛날 데이터인 경우 보정
