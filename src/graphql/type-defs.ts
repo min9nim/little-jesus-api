@@ -52,7 +52,7 @@ export default gql`
     teachers: [Teacher]
     points(teacherId: ObjectId date: String): [Point]
     # pointsByTeacherName(teacherName: name!): [Point]
-    pointMenus: [PointMenu]
+    pointMenus(hidden: Boolean): [PointMenu]
   }
 
   input PointItemArg {

@@ -33,8 +33,12 @@ export default {
     const buildItems = buildItemsField(pointMenus)
     return result.map(buildItems)
   },
-  async pointMenus() {
-    const pointMenus = await models.PointMenus.find({disable: false})
+  async pointMenus(_, {hidden}) {
+    let condition = {disable: false}
+    if(hidden !== undefined){
+      Object.assign(condition, {hidden})
+    }
+    const pointMenus = await models.PointMenus.find(condition)
     return pointMenus
   },
 }
