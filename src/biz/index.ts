@@ -25,7 +25,11 @@ export function buildItemsField(pointMenus){
   return (point) => {
     // flatLog({point})
     let result = point
-    // if(point.items.length === 0){
+    if(!point.items){
+      result.items = []
+      return result
+    }
+    // if(point.items! || point.items.length === 0){
     //   // 옛날 데이터인 경우 보정
     //   result = {...point, items: [
     //     {
@@ -67,7 +71,7 @@ export function buildItemsField(pointMenus){
         // console.log(123, typeof menu._id, typeof item.type, menu._id.toString() === item.type.toString())
         return menu._id.toString() === item.type.toString()
       })(pointMenus)
-      
+
       return result
     })(result.items)
 
@@ -93,10 +97,10 @@ export function buildItemsField(pointMenus){
     //     console.log(666, item)
     //   }
     // })
-    
+
 
     // flatLog('xxxx 9999', result.items[0])
-    
+
     return result
   }
 }
