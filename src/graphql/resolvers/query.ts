@@ -13,6 +13,7 @@ export default {
     return teachers
   },
   async points(_, {teacherId, date}){
+    // let condition = {hidden: false}
     let condition = {}
     if(date){
       Object.assign(condition, {date})
@@ -27,7 +28,7 @@ export default {
       const pred: any = pipe<any, string, boolean>(prop('owner'), includes(__, teacher.students) as any)
       result = result.filter(pred)
     }
-    const pointMenus = await models.PointMenus.find({disable: false}).lean()
+    const pointMenus = await models.PointMenus.find({disable: false, hidden: false}).lean()
     // console.log({pointMenus})
     const buildItems = buildItemsField(pointMenus)
     return result.map(buildItems)
