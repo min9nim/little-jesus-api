@@ -51,6 +51,7 @@ export default gql`
     students: [Student]
     teachers: [Teacher]
     points(teacherId: ObjectId date: String): [Point]
+    pointsFromTo(startDate: String! endDate: String!): [Point]
     # pointsByTeacherName(teacherName: name!): [Point]
     pointMenus(hidden: Boolean): [PointMenu]
   }

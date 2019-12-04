@@ -33,6 +33,13 @@ export default {
     const buildItems = buildItemsField(pointMenus)
     return result.map(buildItems)
   },
+  async pointsFromTo(_, {startDate, endDate}){
+    // let condition = {hidden: false}
+    let result = await models.Points.find({$and: [{date: {$gte: startDate}}, {date: {$lte: endDate}}]}).lean()
+    const pointMenus = await models.PointMenus.find({disable: false, hidden: false}).lean()
+    const buildItems = buildItemsField(pointMenus)
+    return result.map(buildItems)
+  },
   async pointMenus(_, {hidden}) {
     let condition = {disable: false}
     if(hidden !== undefined){
