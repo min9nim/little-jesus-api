@@ -29,7 +29,7 @@ export default {
       result = result.filter(pred)
     }
     const pointMenus = await models.PointMenus.find({disable: false, hidden: false}).lean()
-    // console.log({pointMenus})
+    flatLog('pointMenus = ', pointMenus)
     const buildItems = buildItemsField(pointMenus)
     return result.map(buildItems)
   },

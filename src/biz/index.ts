@@ -1,5 +1,5 @@
 import {find, filter, concat} from "ramda"
-import {exclude} from '@mgsong/min-utils'
+import {exclude, flatLog} from '@mgsong/min-utils'
 import mongoose from 'mongoose'
 
 export function buildItemsField(pointMenus){
@@ -9,10 +9,13 @@ export function buildItemsField(pointMenus){
     if(!point.items){
       result.items = []
     }
-    if(point.items! || point.items.length === 0){
+    if(!point.items || point.items.length === 0){
       // 옛날 데이터인 경우 보정
       result = asis2tobe(point)
     }
+
+    // console.log('필터링 전 ', result)
+
 
     // 1. pointMenus 에 포함된 항목들만 남기기
     result.items = filter((item: any) => {
@@ -24,12 +27,15 @@ export function buildItemsField(pointMenus){
       return result
     })(result.items)
 
+    // console.log('result.items = ', result.items)
+
     // 2. result 에 없는 항목 기본값으로 추가
     // 2.1 빠진 항목들 찾기
     const newMenus = exclude(menu => {
       return find((item: any) => item.type._id.toString() === menu._id.toString())(result.items)
     })(pointMenus)
     // 2.2 빠진 항목들 추가
+    // console.log('newMenus = ', newMenus)
     result.items = concat(result.items, newMenus.map(menu => ({type: menu._id, value: 0})))
 
     return result
