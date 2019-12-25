@@ -24,11 +24,11 @@ export default {
       return teacher
     },
   },
-  PointItem: {
-    async type({type}) {
-      // console.log(888, {type})
-      const pointMenu = await models.PointMenus.findOne({_id: type}).exec()
-      return pointMenu
-    },
-  }
+  // PointItem: {
+  //   async type({type}) {
+  //     // console.log(888, {type})
+  //     const pointMenu = await models.PointMenus.findOne({_id: type}).exec()
+  //     return pointMenu
+  //   },
+  // }
 }
