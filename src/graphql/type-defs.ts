@@ -22,7 +22,7 @@ export default gql`
 
   type Point {
     _id: ObjectId!
-    owner: Student
+    owner: ObjectId!
     date: String # YYYYMMDD
     attendance: Boolean
     visitcall: Boolean
