@@ -1,6 +1,6 @@
 {
   "name": "little-jesus-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "little-jesus api server",
   "scripts": {
     "start": "node -r ./start.prod.js dist/src/index.js",
