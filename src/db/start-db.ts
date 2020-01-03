@@ -7,10 +7,10 @@ export default function startDB() {
   if(NOW_GITHUB_COMMIT_REF === 'master'){
     database_url = dburl
   }
-  console.log('NOW_GITHUB_COMMIT_REF = ' + NOW_GITHUB_COMMIT_REF)
   if(NOW_GITHUB_COMMIT_REF === 'lj2020'){
     database_url = dburl_2020
   }
+  console.log('NOW_GITHUB_COMMIT_REF = ' + NOW_GITHUB_COMMIT_REF)
   console.log('database_url = ' + database_url)
   if (!database_url) {
     throw Error('database_url is not defined')
