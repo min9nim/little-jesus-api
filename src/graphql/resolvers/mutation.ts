@@ -59,11 +59,13 @@ export default {
     return student
   },
   async createPoint(_, {owner, date, items, etc}) {
+    console.log(11)
     const point = await models.Points.create({owner, date, items, etc})
+    console.log(22, point)
     return point
   },
-  async createPointMenu(_, {label, type, priority, hidden = false, disable = false}) {
-    const pointMenu = await models.PointMenus.create({label, type, priority, hidden, disable})
+  async createPointMenu(_, {label, type, defaultValue, hidden = false, disable = false}) {
+    const pointMenu = await models.PointMenus.create({label, type, defaultValue, hidden, disable})
     return pointMenu
   },
   async removeStudent(_, {_id}) {

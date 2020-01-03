@@ -24,25 +24,21 @@ export default gql`
     _id: ObjectId!
     owner: ObjectId!
     date: String # YYYYMMDD
-    attendance: Boolean
-    visitcall: Boolean
-    meditation: Int
-    recitation: Boolean
-    invitation: Int
     items: [PointItem]
     etc: String
   }
 
   type PointItem {
     type: ObjectId!
-    value: Int!
+    value: String!
   }
 
   type PointMenu {
     _id: ObjectId!
     label: String
-    type: String
-    priority: Int
+    type: String!
+    defaultValue: String!
+    priority: Int!
     hidden: Boolean
     disable: Boolean
   }
@@ -58,7 +54,7 @@ export default gql`
 
   input PointItemArg {
     type: ObjectId!
-    value: Int!
+    value: String!
   }
 
   type Mutation {
@@ -77,8 +73,9 @@ export default gql`
     ): Point
     createPointMenu(
       label: String!
-      type: String
-      priority: Int
+      type: String!
+      defaultValue: String!
+      priority: Int!
       hidden: Boolean
     ): PointMenu
     removePoint(_id: ObjectId!): Point
@@ -98,9 +95,10 @@ export default gql`
     ): Point
     updatePointMenu(
       _id: ObjectId!
-      label: String
-      type: String
-      priority: Int
+      label: String!
+      type: String!
+      defaultValue: String!
+      priority: Int!
       hidden: Boolean
       disable: Boolean
     ): PointMenu

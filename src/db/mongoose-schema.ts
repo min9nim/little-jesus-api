@@ -19,22 +19,17 @@ const studentSchema = new mongoose.Schema({
 const pointSchema = new mongoose.Schema({
   owner: {type: Schema.Types.ObjectId, ref: 'Students'},
   date: String,        // YYYYMMDD
-  attendance: Boolean,
-  visitcall: Boolean,
-  meditation: Number,
-  recitation: Boolean,
-  invitation: Number,
   items: [{
     type: {type: Schema.Types.ObjectId, ref: 'PointItems'},
-    value: Number,
+    value: String,
   }],
   etc: String,
 });
 
 const pointMenuSchema = new mongoose.Schema({
   label: String,
-  items: [String],
   type: String,
+  defaultValue: String,
   priority: Number,
   hidden: Boolean,
   disable: Boolean,
