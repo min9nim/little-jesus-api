@@ -33,6 +33,7 @@ const pointSchema = new mongoose.Schema({
 
 const pointMenuSchema = new mongoose.Schema({
   label: String,
+  items: [String],
   type: String,
   priority: Number,
   hidden: Boolean,
