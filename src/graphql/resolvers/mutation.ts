@@ -64,8 +64,8 @@ export default {
     console.log(22, point)
     return point
   },
-  async createPointMenu(_, {label, type, defaultValue, hidden = false, disable = false}) {
-    const pointMenu = await models.PointMenus.create({label, type, defaultValue, hidden, disable})
+  async createPointMenu(_, {label, type, defaultValue, priority, hidden = false, disable = false}) {
+    const pointMenu = await models.PointMenus.create({label, type, defaultValue, priority, hidden, disable})
     return pointMenu
   },
   async removeStudent(_, {_id}) {

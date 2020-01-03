@@ -95,10 +95,10 @@ export default gql`
     ): Point
     updatePointMenu(
       _id: ObjectId!
-      label: String!
-      type: String!
-      defaultValue: String!
-      priority: Int!
+      label: String
+      type: String
+      defaultValue: String
+      priority: Int
       hidden: Boolean
       disable: Boolean
     ): PointMenu
