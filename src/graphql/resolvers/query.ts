@@ -12,20 +12,23 @@ export default {
     const teachers = await models.Teachers.find({})
     return teachers
   },
-  async points(_, {teacherId, date}){
+  async points(_, {teacherId, date}) {
     // let condition = {hidden: false}
     let condition = {}
-    if(date){
+    if (date) {
       Object.assign(condition, {date})
     }
     let result = await models.Points.find(condition).lean()
-    if(teacherId){
+    if (teacherId) {
       const teacher = await models.Teachers.findOne({_id: teacherId})
-      if(!teacher){
+      if (!teacher) {
         console.warn(`Not found teacher[${teacherId}]`)
         return []
       }
-      const pred: any = pipe<any, string, boolean>(prop('owner'), includes(__, teacher.students) as any)
+      const pred: any = pipe<any, string, boolean>(
+        prop('owner'),
+        includes(__, teacher.students) as any
+      )
       result = result.filter(pred)
     }
     const pointMenus = await models.PointMenus.find({disable: false, hidden: false}).lean()
@@ -33,17 +36,19 @@ export default {
     const buildItems = buildItemsField(pointMenus)
     return result.map(buildItems)
   },
-  async pointsFromTo(_, {startDate, endDate}){
-    console.log('pointsFromTo', {startDate, endDate})
+  async pointsFromTo(_, {startDate, endDate}) {
+    // console.log('pointsFromTo', {startDate, endDate})
     // let condition = {hidden: false}
-    let result = await models.Points.find({$and: [{date: {$gte: startDate}}, {date: {$lte: endDate}}]}).lean()
+    let result = await models.Points.find({
+      $and: [{date: {$gte: startDate}}, {date: {$lte: endDate}}],
+    }).lean()
     const pointMenus = await models.PointMenus.find({disable: false, hidden: false}).lean()
     const buildItems = buildItemsField(pointMenus)
     return result.map(buildItems)
   },
   async pointMenus(_, {hidden}) {
     let condition = {disable: false}
-    if(hidden !== undefined){
+    if (hidden !== undefined) {
       Object.assign(condition, {hidden})
     }
     const pointMenus = await models.PointMenus.find(condition)

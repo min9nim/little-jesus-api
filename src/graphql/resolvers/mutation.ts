@@ -8,14 +8,22 @@ export default {
     if (!student) {
       throw Error('student not found')
     }
-    const teacher = await models.Teachers.findOneAndUpdate({name: teacherName}, {$push: {students: student._id}}, {new: true})
+    const teacher = await models.Teachers.findOneAndUpdate(
+      {name: teacherName},
+      {$push: {students: student._id}},
+      {new: true}
+    )
     if (!teacher) {
       throw Error('teacher not found')
     }
     return teacher
   },
   async addStudentToTeacher(_, {teacherId, studentId}) {
-    const teacher = await models.Teachers.findOneAndUpdate({_id: teacherId}, {$push: {students: studentId}}, {new: true})
+    const teacher = await models.Teachers.findOneAndUpdate(
+      {_id: teacherId},
+      {$push: {students: studentId}},
+      {new: true}
+    )
     if (!teacher) {
       throw Error('teacher not found')
     }
@@ -26,14 +34,22 @@ export default {
     if (!student) {
       throw Error('student not found')
     }
-    const teacher = await models.Teachers.findOneAndUpdate({name: teacherName}, {$pull: {students: student._id}}, {new: true})
+    const teacher = await models.Teachers.findOneAndUpdate(
+      {name: teacherName},
+      {$pull: {students: student._id}},
+      {new: true}
+    )
     if (!teacher) {
       throw Error('teacher not found')
     }
     return teacher
   },
   async removeStudentToTeacher(_, {teacherId, studentId}) {
-    const teacher = await models.Teachers.findOneAndUpdate({_id: teacherId}, {$pull: {students: studentId}}, {new: true})
+    const teacher = await models.Teachers.findOneAndUpdate(
+      {_id: teacherId},
+      {$pull: {students: studentId}},
+      {new: true}
+    )
     if (!teacher) {
       throw Error('teacher not found')
     }
@@ -59,17 +75,26 @@ export default {
     return student
   },
   async createPoint(_, {owner, date, items, etc}) {
-    console.log(11)
     const point = await models.Points.create({owner, date, items, etc})
-    console.log(22, point)
     return point
   },
   async createPointMenu(_, {label, type, defaultValue, priority, hidden = false, disable = false}) {
-    const pointMenu = await models.PointMenus.create({label, type, defaultValue, priority, hidden, disable})
+    const pointMenu = await models.PointMenus.create({
+      label,
+      type,
+      defaultValue,
+      priority,
+      hidden,
+      disable,
+    })
     return pointMenu
   },
   async removeStudent(_, {_id}) {
-    const teacher = await models.Teachers.findOneAndUpdate({students: { $contains : _id }}, {$pull: {students: _id}}, {new: true})
+    const teacher = await models.Teachers.findOneAndUpdate(
+      {students: {$contains: _id}},
+      {$pull: {students: _id}},
+      {new: true}
+    )
     if (!teacher) {
       console.log('Teacher is not found')
     }
