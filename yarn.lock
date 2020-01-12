@@ -14,13 +14,6 @@
   resolved "https://registry.yarnpkg.com/@apollographql/graphql-playground-html/-/graphql-playground-html-1.6.24.tgz#3ce939cb127fb8aaa3ffc1e90dff9b8af9f2e3dc"
   integrity sha512-8GqG48m1XqyXh4mIZrtB5xOhUwSsh1WsrrsaZQOEYYql3YN9DEu9OOSg0ILzXHZo/h2Q74777YE4YzlArQzQEQ==
 
-"@mgsong/min-utils@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@mgsong/min-utils/-/min-utils-0.0.7.tgz#8e07b1c9769601ee3b781b2a3ac30799f2990b43"
-  integrity sha512-/u5lzkgUMwoeKPHhFJsnPGZZEDlt7nEyAAoSBgo5RgGhcDJQgA8yUNsyQpH/JjIjnDLmMTuhNb5XI3dMaGpjvg==
-  dependencies:
-    ramda "^0.26.1"
-
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -1808,6 +1801,13 @@ mime@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
+
+mingutils@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/mingutils/-/mingutils-0.0.7.tgz#017d437de87bab56d1575ae971a7a80cc1a2e898"
+  integrity sha512-u3JFT2k9zHkpTphXUOQ2p67T2FqKuiaEVb7nkOn57k85wVlqmcwze+Oo16bQdBVboz2uDs0N37Fg8uTPWOtd7w==
+  dependencies:
+    ramda "^0.26.1"
 
 minimatch@^3.0.4:
   version "3.0.4"

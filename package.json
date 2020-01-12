@@ -12,9 +12,9 @@
   "author": "min9nim",
   "license": "MIT",
   "dependencies": {
-    "@mgsong/min-utils": "^0.0.7",
     "apollo-server": "^2.9.5",
     "graphql": "^14.5.8",
+    "mingutils": "0.0.7",
     "module-alias": "^2.2.2",
     "mongoose": "^5.7.3",
     "ramda": "^0.26.1"
