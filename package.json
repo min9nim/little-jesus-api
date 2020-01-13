@@ -10,6 +10,9 @@
   },
   "main": "dist/src/index.js",
   "author": "min9nim",
+  "engines": {
+    "node": "12.x"
+  },
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.9.5",
