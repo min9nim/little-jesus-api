@@ -75,6 +75,12 @@ export default {
     return student
   },
   async createPoint(_, {owner, date, items, etc}) {
+    const asisPoint = await models.Points.findOne({owner, date}).lean()
+    if (asisPoint) {
+      console.log({owner, date, asisPoint})
+      throw Error('point duplicate error')
+    }
+
     const point = await models.Points.create({owner, date, items, etc})
     return point
   },
