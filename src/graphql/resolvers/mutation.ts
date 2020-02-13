@@ -115,6 +115,7 @@ export default {
       //   {value: '0명:0', type: '5e0ed4bd50898d134a59e407'},
       //   {value: '안함:0', type: '5e0ed4c650898d134a59e408'},
       // ],
+      etc: '',
       items: pointMenu.map(menu => {
         const typeList = menu.type.split(',')
         if (menu.label === '출석') {
