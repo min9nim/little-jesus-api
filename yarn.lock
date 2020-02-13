@@ -1386,6 +1386,11 @@ iconv-lite@0.4.24, iconv-lite@^0.4.4:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+if-logger@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/if-logger/-/if-logger-0.8.2.tgz#d9caed69bb2f3d37240c555b3bd7a78a02fe0c7e"
+  integrity sha512-IN0R5Qx2V0EaWDDSJhBuIp84hb8laeqhIdc/hbn7qDdPQU3wfwM85gykTHmIPrKu7/YOC9oyF3F3ps2YqNFbbQ==
+
 ignore-by-default@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ignore-by-default/-/ignore-by-default-1.0.1.tgz#48ca6d72f6c6a3af00a9ad4ae6876be3889e2b09"

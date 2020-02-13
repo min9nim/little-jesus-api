@@ -46,8 +46,8 @@ export default gql`
   type Query {
     students: [Student]
     teachers: [Teacher]
-    points(teacherId: ObjectId date: String): [Point]
-    pointsFromTo(startDate: String! endDate: String!): [Point]
+    points(teacherId: ObjectId, date: String): [Point]
+    pointsFromTo(startDate: String!, endDate: String!): [Point]
     # pointsByTeacherName(teacherName: name!): [Point]
     pointMenus(hidden: Boolean): [PointMenu]
   }
@@ -65,12 +65,8 @@ export default gql`
     createTeacher(name: String!): Teacher
     removeTeacher(_id: ObjectId!): Teacher
     createStudent(name: String!, birth: String): Student
-    createPoint(
-      owner: ObjectId!
-      date: String!
-      items: [PointItemArg!]!
-      etc: String
-    ): Point
+    createPoint(owner: ObjectId!, date: String!, items: [PointItemArg!]!, etc: String): Point
+    checkAttendance(owner: ObjectId!, date: String!): Point
     createPointMenu(
       label: String!
       type: String!
@@ -79,9 +75,7 @@ export default gql`
       hidden: Boolean
     ): PointMenu
     removePoint(_id: ObjectId!): Point
-    removePointMenu(
-      _id: ObjectId!
-    ): PointMenu
+    removePointMenu(_id: ObjectId!): PointMenu
     removeStudent(_id: ObjectId!): Student
     removeStudentByName(name: String!): Student
     updateStudent(_id: ObjectId!, name: String, birth: String): Student

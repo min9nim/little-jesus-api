@@ -1,6 +1,8 @@
 import {models} from 'mongoose'
 // import {exclude, isNil, omit} from '~/utils'     // FIXME now 환경에서 ~ 별칭을 못찾네;
 import {exclude, isNil, omit} from '../../utils'
+import {propEq} from 'ramda'
+import createLogger from 'if-logger'
 
 export default {
   async addStudentToTeacherByName(_, {teacherName, studentName}) {
@@ -82,6 +84,55 @@ export default {
     }
 
     const point = await models.Points.create({owner, date, items, etc})
+    return point
+  },
+  async checkAttendance(_, {owner, date}) {
+    const logger = createLogger().addTags('checkAttendance')
+    const pointMenu: any = await models.PointMenus.find({disable: false}).lean()
+    const attendanceMenu = pointMenu.find(propEq('label', '출석'))
+    if (!attendanceMenu) {
+      throw Error('attendanceMenu is not found')
+    }
+    const asisPoint = await models.Points.findOne({owner, date}).exec()
+    if (asisPoint) {
+      const attendanceItem = asisPoint.items.find(item => {
+        return item.type.toString() === attendanceMenu._id.toString()
+      })
+      attendanceItem.value = '출석:1'
+      asisPoint.save()
+      logger.verbose('asisPoint is updated')
+      return asisPoint
+    }
+
+    const point = await models.Points.create({
+      owner,
+      date,
+      // items: [
+      //   {value: '출석:1', type: '5e0ed45c50898d134a59e403'},
+      //   {value: '0회:0', type: '5e0ed48550898d134a59e404'},
+      //   {value: '안함:0', type: '5e0ed49350898d134a59e405'},
+      //   {value: '안함:0', type: '5e0ed49d50898d134a59e406'},
+      //   {value: '0명:0', type: '5e0ed4bd50898d134a59e407'},
+      //   {value: '안함:0', type: '5e0ed4c650898d134a59e408'},
+      // ],
+      etc: '',
+      items: pointMenu.map(menu => {
+        const typeList = menu.type.split(',')
+        if (menu.label === '출석') {
+          return {
+            value: typeList.find(type => type.includes('출석')),
+            type: menu._id.toString(),
+          }
+        }
+        return {
+          value: typeList.find(type => type.includes(menu.defaultValue)),
+          type: menu._id.toString(),
+        }
+      }),
+    })
+    logger.debug('new point created')
+    logger.debug('point.items=', point.items)
+
     return point
   },
   async createPointMenu(_, {label, type, defaultValue, priority, hidden = false, disable = false}) {
