@@ -149,15 +149,14 @@ export default {
   async removeStudent(_, {_id}) {
     const logger = createLogger().addTags('removeStudent')
     logger.info('_id', _id)
+
     const teacher = await models.Teachers.findOneAndUpdate(
-      {students: {$contains: _id}},
+      {students: _id},
       {$pull: {students: _id}},
       {new: true}
     )
     logger.verbose('teacher', teacher)
-    if (!teacher) {
-      console.log('Teacher is not found')
-    }
+    logger.if(!teacher).warn('Teacher is not found')
     const student = await models.Students.findOneAndRemove({_id})
     return student
   },
