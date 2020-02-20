@@ -18,6 +18,7 @@ export default gql`
     name: String!
     birth: String # YYYYMMDD
     teacher: Teacher
+    no: String
   }
 
   type Point {
@@ -78,7 +79,7 @@ export default gql`
     removePointMenu(_id: ObjectId!): PointMenu
     removeStudent(_id: ObjectId!): Student
     removeStudentByName(name: String!): Student
-    updateStudent(_id: ObjectId!, name: String, birth: String): Student
+    updateStudent(_id: ObjectId!, name: String, birth: String, no: String): Student
     updateTeacher(_id: ObjectId!, name: String, students: [ObjectId]): Teacher
     updatePoint(
       _id: ObjectId!

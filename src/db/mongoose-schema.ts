@@ -9,22 +9,25 @@ const classSchema = new mongoose.Schema({
 const teacherSchema = new mongoose.Schema({
   name: String,
   students: [{type: Schema.Types.ObjectId, ref: 'Students'}],
-});
+})
 
 const studentSchema = new mongoose.Schema({
   name: String,
-  birth: String,    // YYYYMMDD
-});
+  birth: String, // YYYYMMDD
+  no: String,
+})
 
 const pointSchema = new mongoose.Schema({
   owner: {type: Schema.Types.ObjectId, ref: 'Students'},
-  date: String,        // YYYYMMDD
-  items: [{
-    type: {type: Schema.Types.ObjectId, ref: 'PointItems'},
-    value: String,
-  }],
+  date: String, // YYYYMMDD
+  items: [
+    {
+      type: {type: Schema.Types.ObjectId, ref: 'PointItems'},
+      value: String,
+    },
+  ],
   etc: String,
-});
+})
 
 const pointMenuSchema = new mongoose.Schema({
   label: String,
@@ -33,15 +36,12 @@ const pointMenuSchema = new mongoose.Schema({
   priority: Number,
   hidden: Boolean,
   disable: Boolean,
-});
+})
 
-export default function registerSchema(){
+export default function registerSchema() {
   mongoose.model('Classes', classSchema),
-  mongoose.model('Teachers', teacherSchema),
-  mongoose.model('Students', studentSchema);
-  mongoose.model('Points', pointSchema);
-  mongoose.model('PointMenus', pointMenuSchema);
+    mongoose.model('Teachers', teacherSchema),
+    mongoose.model('Students', studentSchema)
+  mongoose.model('Points', pointSchema)
+  mongoose.model('PointMenus', pointMenuSchema)
 }
-
-
-
