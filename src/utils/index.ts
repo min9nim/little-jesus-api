@@ -3,7 +3,7 @@ import {assignQueryParams, peek} from './pure'
 
 export function markError(args) {
   // 예외에 부가정보를 세팅한다
-  return (e) => {
+  return e => {
     Object.assign(e, args)
     throw e
   }
@@ -25,10 +25,10 @@ export function markError(args) {
 // global.peek = peek
 
 export function installScript(apiUrl: string) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const script: any = window.document.createElement('script')
     const load = () => {
-      if(!script.readyState || /loaded|complete/.test(script.readyState)){
+      if (!script.readyState || /loaded|complete/.test(script.readyState)) {
         setTimeout(() => {
           resolve()
         }, 500)
@@ -66,7 +66,7 @@ export function getProtocol(url) {
   return url.slice(0, end)
 }
 
-export const appendQueryParams = (paramObj) => {
+export const appendQueryParams = paramObj => {
   return assignQueryParams(location.href)(paramObj)
 }
 
@@ -77,4 +77,21 @@ export function copyToClipboard(val) {
   t.select()
   document.execCommand('copy')
   document.body.removeChild(t)
+}
+
+export function getClientIp(req) {
+  if (!req.headers) {
+    return 'x.x.x.x'
+  }
+  // From proxy headers, can be spoofed if you don't have a proxy in front of your app, so drop it if your app is naked.
+  const forwarded = req.headers['x-forwarded-for']
+  const ip = forwarded && forwarded.split(',').pop()
+  return (
+    ip ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress || // socket is an alias to connection, just delete this line
+    req.connection.socket.remoteAddress // no idea where this might be a thing, just delete this line
+  )
+  // probably add a default at the end here,
+  // although there shouldn't be a case when req.connection.remoteAddress is unset.
 }
