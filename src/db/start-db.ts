@@ -4,7 +4,7 @@ import registerSchema from './mongoose-schema'
 export default function startDB() {
   const {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl} = process.env
 
-  const database_url = NOW_GITHUB_COMMIT_REF === 'master' ? dburl : dburl_dev
+  const database_url = NOW_GITHUB_COMMIT_REF === 'lj2019' ? dburl : dburl_dev
   if (!database_url) {
     throw Error('database_url is not defined')
   }
