@@ -1386,10 +1386,12 @@ iconv-lite@0.4.24, iconv-lite@^0.4.4:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-if-logger@0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/if-logger/-/if-logger-0.8.2.tgz#d9caed69bb2f3d37240c555b3bd7a78a02fe0c7e"
-  integrity sha512-IN0R5Qx2V0EaWDDSJhBuIp84hb8laeqhIdc/hbn7qDdPQU3wfwM85gykTHmIPrKu7/YOC9oyF3F3ps2YqNFbbQ==
+if-logger@0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/if-logger/-/if-logger-0.10.1.tgz#e12e2a1a9f122c935a0ef3214dbc3d8785830d32"
+  integrity sha512-mnk8lg+3aBHE6yvUi1GhA/dLUyyS3eyy31CiseGv6de7NTqoO85WvRUv65V9Lzg/FyEXQ/hPHkiVYLiXDIkSBA==
+  dependencies:
+    tslib "^1.10.0"
 
 ignore-by-default@^1.0.1:
   version "1.0.1"
@@ -2791,6 +2793,11 @@ tsconfig-paths@^3.9.0:
     json5 "^1.0.1"
     minimist "^1.2.0"
     strip-bom "^3.0.0"
+
+tslib@^1.10.0:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
+  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
 
 tslib@^1.9.3:
   version "1.10.0"
