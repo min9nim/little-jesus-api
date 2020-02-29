@@ -1,5 +1,10 @@
 export * from './pure'
 import {assignQueryParams, peek} from './pure'
+import moment from 'moment'
+import createLogger from 'if-logger'
+import {gql} from 'apollo-server'
+
+const logger = createLogger().addTags('utils')
 
 export function markError(args) {
   // 예외에 부가정보를 세팅한다
@@ -80,18 +85,69 @@ export function copyToClipboard(val) {
 }
 
 export function getClientIp(req) {
-  if (!req.headers) {
-    return 'x.x.x.x'
+  const notFound = 'x.x.x.x'
+  if (req.headers) {
+    const forwarded = req.headers['x-forwarded-for']
+    if (forwarded) {
+      return forwarded.split(',').pop() || notFound
+    }
   }
-  // From proxy headers, can be spoofed if you don't have a proxy in front of your app, so drop it if your app is naked.
-  const forwarded = req.headers['x-forwarded-for']
-  const ip = forwarded && forwarded.split(',').pop()
-  return (
-    ip ||
-    req.connection.remoteAddress ||
-    req.socket.remoteAddress || // socket is an alias to connection, just delete this line
-    req.connection.socket.remoteAddress // no idea where this might be a thing, just delete this line
-  )
-  // probably add a default at the end here,
-  // although there shouldn't be a case when req.connection.remoteAddress is unset.
+  if (req.connection) {
+    if (req.connection.remoteAddress) {
+      return req.connection.remoteAddress || notFound
+    }
+    if (req.connection.socket) {
+      return req.connection.socket.remoteAddress || notFound
+    }
+  }
+  if (req.socket) {
+    return req.socket.remoteAddress || notFound
+  }
+  return notFound
+}
+
+export function getQueryName(req) {
+  if (!req.body) {
+    return
+  }
+  // if(req.body.operationName){
+  //   return req.body.operationName
+  // }
+  if (!req.body.query) {
+    return
+  }
+  try {
+    const parsed: any = gql(req.body.query)
+    if (parsed) {
+      // logger.debug('parsed:', parsed.definitions)
+      const name = parsed.definitions[0].name
+      if (name) {
+        return name.value
+      }
+    }
+  } catch (e) {
+    logger.warn(e)
+  }
+
+  // eslint-disable-next-line no-useless-escape
+  const regexp = /{\n?([^\({]+)[{\(]/i
+  const result = req.body.query.match(regexp)
+  if (!result) {
+    logger.warn('Failed to find queryName in query')
+    logger.warn('req.body.query:', req.body.query)
+    return
+  }
+  const queryName = result[1].trim()
+  const arr = queryName.split(':')
+  if (arr[1]) {
+    return arr[1].trim()
+  }
+  return queryName
+}
+
+export function currentTime() {
+  return moment()
+    .utc()
+    .add(9, 'hours')
+    .format('MM/DD HH:mm:ss')
 }

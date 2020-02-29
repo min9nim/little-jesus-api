@@ -3,8 +3,7 @@ import startDB from './db/start-db'
 import resolvers from './graphql/resolvers'
 import typeDefs from './graphql/type-defs'
 import createLogger from 'if-logger'
-import {getClientIp} from './utils'
-import {prop} from 'ramda'
+import {getClientIp, currentTime, getQueryName} from './utils'
 
 startDB()
 
@@ -15,10 +14,15 @@ const server = new ApolloServer({
     apiKey: 'service:little-jesus:zan-VlnnwRKLKLMIjFa19A',
   },
   context: ({req, res}) => {
-    const queryName = prop('operationName', req.body)
-    const logger = createLogger({tags: [getClientIp(req), queryName]})
-    if (queryName !== 'IntrospectionQuery') {
-      logger.verbose(req.body.query, req.body.variables)
+    const logger = createLogger({
+      tags: [currentTime, getClientIp(req), getQueryName(req)],
+    })
+    logger.verbose("Client's context initialized")
+    if (res) {
+      logger.verbose.time('response time:')
+      res.on('finish', () => {
+        logger.verbose.timeEnd('response time:')
+      })
     }
   },
   introspection: true,

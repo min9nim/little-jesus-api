@@ -1386,7 +1386,7 @@ iconv-lite@0.4.24, iconv-lite@^0.4.4:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-if-logger@^0.8.2:
+if-logger@0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/if-logger/-/if-logger-0.8.2.tgz#d9caed69bb2f3d37240c555b3bd7a78a02fe0c7e"
   integrity sha512-IN0R5Qx2V0EaWDDSJhBuIp84hb8laeqhIdc/hbn7qDdPQU3wfwM85gykTHmIPrKu7/YOC9oyF3F3ps2YqNFbbQ==
@@ -1865,6 +1865,11 @@ module-alias@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/module-alias/-/module-alias-2.2.2.tgz#151cdcecc24e25739ff0aa6e51e1c5716974c0e0"
   integrity sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
+
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 mongodb@3.3.2:
   version "3.3.2"
