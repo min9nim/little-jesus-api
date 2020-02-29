@@ -5,6 +5,8 @@ import typeDefs from './graphql/type-defs'
 import createLogger from 'if-logger'
 import {getClientIp, currentTime, getQueryName} from './utils'
 
+const logger = createLogger({tags: [currentTime]})
+
 startDB()
 
 const server = new ApolloServer({
@@ -31,5 +33,5 @@ const server = new ApolloServer({
 })
 const port = process.env.PORT || 5050
 server.listen({port}).then(({url}) => {
-  console.log(`🚀  Server ready at ${url}`)
+  logger.info(`🚀  Server ready at ${url}`)
 })
