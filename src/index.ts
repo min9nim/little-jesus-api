@@ -11,6 +11,9 @@ startDB()
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  engine: {
+    apiKey: 'service:little-jesus:zan-VlnnwRKLKLMIjFa19A',
+  },
   context: ({req, res}) => {
     const queryName = prop('operationName', req.body)
     const logger = createLogger({tags: [getClientIp(req), queryName]})
