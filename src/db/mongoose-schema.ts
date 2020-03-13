@@ -39,9 +39,9 @@ const pointMenuSchema = new mongoose.Schema({
 })
 
 export default function registerSchema() {
-  mongoose.model('Classes', classSchema),
-    mongoose.model('Teachers', teacherSchema),
-    mongoose.model('Students', studentSchema)
+  mongoose.model('Classes', classSchema)
+  mongoose.model('Teachers', teacherSchema)
+  mongoose.model('Students', studentSchema)
   mongoose.model('Points', pointSchema)
   mongoose.model('PointMenus', pointMenuSchema)
 }
