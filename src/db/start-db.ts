@@ -1,9 +1,6 @@
 import mongoose from 'mongoose'
 import registerSchema from './mongoose-schema'
 import createLogger from 'if-logger'
-import dotenv from 'dotenv'
-
-dotenv.config()
 const logger = createLogger().addTags('start-db.ts')
 
 export default function startDB() {

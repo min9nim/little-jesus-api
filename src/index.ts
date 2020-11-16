@@ -4,6 +4,9 @@ import resolvers from './graphql/resolvers'
 import typeDefs from './graphql/type-defs'
 import createLogger from 'if-logger'
 import {getClientIp, currentTime, getQueryName} from './utils'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const logger = createLogger({tags: [currentTime]})
 
