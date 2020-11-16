@@ -12,7 +12,7 @@ export default function startDB() {
   if (NOW_GITHUB_COMMIT_REF === 'lj2019') {
     database_url = dburl
   }
-  if (NOW_GITHUB_COMMIT_REF === 'lj2020' || NOW_GITHUB_COMMIT_REF === 'master') {
+  if (['lj2020', 'master', 'main'].includes(NOW_GITHUB_COMMIT_REF || '')) {
     database_url = dburl_2020
   }
   logger.info('database_url = ' + database_url)
