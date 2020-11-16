@@ -1,10 +1,10 @@
 {
   "public": true,
   "version": 2,
-  "builds": [{ "src": "src/**/*.ts", "use": "@now/node@canary" }],
+  "builds": [{"src": "src/**/*.ts", "use": "@now/node@canary"}],
   "routes": [
     {
-      "src": "/",
+      "src": "/.*",
       "dest": "src/index.ts",
       "methods": ["POST", "OPTIONS", "GET"],
       "headers": {
@@ -16,7 +16,6 @@
     "autoJobCancelation": false
   },
   "env": {
-    "dburl_dev": "@little-jesus-dburl-dev",
-    "dburl": "@little-jesus-dburl"
+    "dburl": "@little-jesus-dburl",
   }
 }

@@ -1,9 +1,14 @@
 export * from './pure'
 import {assignQueryParams, peek} from './pure'
+import moment from 'moment'
+import createLogger from 'if-logger'
+import {gql} from 'apollo-server'
+
+const logger = createLogger().addTags('utils')
 
 export function markError(args) {
   // 예외에 부가정보를 세팅한다
-  return (e) => {
+  return e => {
     Object.assign(e, args)
     throw e
   }
@@ -25,10 +30,10 @@ export function markError(args) {
 // global.peek = peek
 
 export function installScript(apiUrl: string) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const script: any = window.document.createElement('script')
     const load = () => {
-      if(!script.readyState || /loaded|complete/.test(script.readyState)){
+      if (!script.readyState || /loaded|complete/.test(script.readyState)) {
         setTimeout(() => {
           resolve()
         }, 500)
@@ -66,7 +71,7 @@ export function getProtocol(url) {
   return url.slice(0, end)
 }
 
-export const appendQueryParams = (paramObj) => {
+export const appendQueryParams = paramObj => {
   return assignQueryParams(location.href)(paramObj)
 }
 
@@ -77,4 +82,72 @@ export function copyToClipboard(val) {
   t.select()
   document.execCommand('copy')
   document.body.removeChild(t)
+}
+
+export function getClientIp(req) {
+  const notFound = 'x.x.x.x'
+  if (req.headers) {
+    const forwarded = req.headers['x-forwarded-for']
+    if (forwarded) {
+      return forwarded.split(',').pop() || notFound
+    }
+  }
+  if (req.connection) {
+    if (req.connection.remoteAddress) {
+      return req.connection.remoteAddress || notFound
+    }
+    if (req.connection.socket) {
+      return req.connection.socket.remoteAddress || notFound
+    }
+  }
+  if (req.socket) {
+    return req.socket.remoteAddress || notFound
+  }
+  return notFound
+}
+
+export function getQueryName(req) {
+  if (!req.body) {
+    return
+  }
+  // if(req.body.operationName){
+  //   return req.body.operationName
+  // }
+  if (!req.body.query) {
+    return
+  }
+  try {
+    const parsed: any = gql(req.body.query)
+    if (parsed) {
+      // logger.debug('parsed:', parsed.definitions)
+      const name = parsed.definitions[0].name
+      if (name) {
+        return name.value
+      }
+    }
+  } catch (e) {
+    logger.warn(e)
+  }
+
+  // eslint-disable-next-line no-useless-escape
+  const regexp = /{\n?([^\({]+)[{\(]/i
+  const result = req.body.query.match(regexp)
+  if (!result) {
+    logger.warn('Failed to find queryName in query')
+    logger.warn('req.body.query:', req.body.query)
+    return
+  }
+  const queryName = result[1].trim()
+  const arr = queryName.split(':')
+  if (arr[1]) {
+    return arr[1].trim()
+  }
+  return queryName
+}
+
+export function currentTime() {
+  return moment()
+    .utc()
+    .add(9, 'hours')
+    .format('MM/DD HH:mm:ss')
 }

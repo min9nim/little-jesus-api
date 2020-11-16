@@ -1,6 +1,6 @@
 {
   "name": "little-jesus-api",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "little-jesus api server",
   "scripts": {
     "start": "node -r ./start.prod.js dist/src/index.js",
@@ -13,8 +13,12 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.9.5",
+    "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
+    "if-logger": "0.10.1",
+    "mingutils": "0.0.7",
     "module-alias": "^2.2.2",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.3",
     "ramda": "^0.26.1"
   },

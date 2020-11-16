@@ -10,7 +10,7 @@ export default gql`
   type Teacher {
     _id: ObjectId!
     name: String!
-    students: [Student]
+    students: [ObjectId]
   }
 
   type Student {
@@ -18,25 +18,44 @@ export default gql`
     name: String!
     birth: String # YYYYMMDD
     teacher: Teacher
+    no: String
   }
 
   type Point {
     _id: ObjectId!
-    owner: Student
+    owner: ObjectId!
     date: String # YYYYMMDD
-    attendance: Boolean
-    visitcall: Boolean
-    meditation: Int
-    recitation: Boolean
-    invitation: Int
+    items: [PointItem]
     etc: String
+  }
+
+  type PointItem {
+    type: ObjectId!
+    value: String!
+  }
+
+  type PointMenu {
+    _id: ObjectId!
+    label: String
+    type: String!
+    defaultValue: String!
+    priority: Int!
+    hidden: Boolean
+    disable: Boolean
   }
 
   type Query {
     students: [Student]
     teachers: [Teacher]
-    points(teacherId: ObjectId date: String): [Point]
+    points(teacherId: ObjectId, date: String): [Point]
+    pointsFromTo(startDate: String!, endDate: String!): [Point]
     # pointsByTeacherName(teacherName: name!): [Point]
+    pointMenus(hidden: Boolean): [PointMenu]
+  }
+
+  input PointItemArg {
+    type: ObjectId!
+    value: String!
   }
 
   type Mutation {
@@ -47,31 +66,36 @@ export default gql`
     createTeacher(name: String!): Teacher
     removeTeacher(_id: ObjectId!): Teacher
     createStudent(name: String!, birth: String): Student
-    createPoint(
-      owner: ObjectId!
-      date: String!
-      attendance: Boolean
-      visitcall: Boolean
-      meditation: Int
-      recitation: Boolean
-      invitation: Int
-      etc: String
-    ): Point
+    createPoint(owner: ObjectId!, date: String!, items: [PointItemArg!]!, etc: String): Point
+    checkAttendance(owner: ObjectId!, date: String!): Point
+    createPointMenu(
+      label: String!
+      type: String!
+      defaultValue: String!
+      priority: Int!
+      hidden: Boolean
+    ): PointMenu
     removePoint(_id: ObjectId!): Point
+    removePointMenu(_id: ObjectId!): PointMenu
     removeStudent(_id: ObjectId!): Student
     removeStudentByName(name: String!): Student
-    updateStudent(_id: ObjectId!, name: String, birth: String): Student
+    updateStudent(_id: ObjectId!, name: String, birth: String, no: String): Student
     updateTeacher(_id: ObjectId!, name: String, students: [ObjectId]): Teacher
     updatePoint(
       _id: ObjectId!
       owner: ObjectId
       date: String
-      attendance: Boolean
-      visitcall: Boolean
-      meditation: Int
-      recitation: Boolean
-      invitation: Int
+      items: [PointItemArg!]!
       etc: String
     ): Point
+    updatePointMenu(
+      _id: ObjectId!
+      label: String
+      type: String
+      defaultValue: String
+      priority: Int
+      hidden: Boolean
+      disable: Boolean
+    ): PointMenu
   }
 `
