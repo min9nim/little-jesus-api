@@ -8,7 +8,7 @@ export default function startDB() {
   const {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020} = process.env
   logger.debug('xxx', {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020})
 
-  let database_url = dburl_dev
+  let database_url : undefined | string = dburl_dev || 'mongodb+srv://dev:dev1234@little-jesus-dev.bbdkq.mongodb.net/little-jesus-dev?retryWrites=true&w=majority'
   logger.info('NOW_GITHUB_COMMIT_REF = ' + NOW_GITHUB_COMMIT_REF)
   if (NOW_GITHUB_COMMIT_REF === 'lj2019') {
     database_url = dburl
