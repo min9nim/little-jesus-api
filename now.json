@@ -16,6 +16,6 @@
     "autoJobCancelation": false
   },
   "env": {
-    "dburl": "@little-jesus-dburl",
+    "dburl": "@little-jesus-dburl"
   }
 }
