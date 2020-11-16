@@ -1,5 +1,5 @@
-import {find, filter, concat} from 'ramda'
-import {exclude, flatLog} from 'mingutils'
+import {concat, filter, find} from 'ramda'
+import {exclude} from 'mingutils'
 import mongoose from 'mongoose'
 
 export function buildItemsField(pointMenus) {
