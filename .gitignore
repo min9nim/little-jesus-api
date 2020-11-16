@@ -7,3 +7,5 @@ prod-start.sh
 # db-info.ts
 yarn-error.log
 .idea
+
+.vercel
