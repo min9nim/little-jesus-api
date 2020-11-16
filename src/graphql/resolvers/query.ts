@@ -1,7 +1,6 @@
 import {models} from 'mongoose'
 import {__, includes, pipe, prop} from 'ramda'
 import {buildItemsField} from '../../biz'
-import {flatLog} from 'mingutils'
 
 export default {
   async students() {
