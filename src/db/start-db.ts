@@ -1,23 +1,20 @@
 import mongoose from 'mongoose'
 import registerSchema from './mongoose-schema'
 import createLogger from 'if-logger'
+import {oneOf} from 'mingutils'
+
 const logger = createLogger().addTags('start-db.ts')
 
 export default function startDB() {
-  const {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020, dburl_2021} = process.env
+  const {NOW_GITHUB_COMMIT_REF = '', dburl_dev, dburl, dburl_2020, dburl_2021} = process.env
   logger.debug('xxx', {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020})
 
-  let database_url = dburl_dev
-  logger.info('NOW_GITHUB_COMMIT_REF = ' + NOW_GITHUB_COMMIT_REF)
-  if (NOW_GITHUB_COMMIT_REF === 'lj2019') {
-    database_url = dburl
-  }
-  if (['lj2020'].includes(NOW_GITHUB_COMMIT_REF || '')) {
-    database_url = dburl_2020
-  }
-  if (['main'].includes(NOW_GITHUB_COMMIT_REF || '')) {
-    database_url = dburl_2021
-  }
+  let database_url = oneOf([
+    [/lj2020/.test(NOW_GITHUB_COMMIT_REF), dburl_2020],
+    [/main/.test(NOW_GITHUB_COMMIT_REF), dburl_2021],
+    [true, dburl_dev]
+  ])
+
   logger.info('database_url = ' + database_url)
   if (!database_url) {
     throw Error('database_url is not defined')
