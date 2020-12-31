@@ -1,18 +1,22 @@
 import mongoose from 'mongoose'
 import registerSchema from './mongoose-schema'
 import createLogger from 'if-logger'
-
 const logger = createLogger().addTags('start-db.ts')
 
 export default function startDB() {
-  const {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020} = process.env
+  const {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020, dburl_2021} = process.env
+  logger.debug('xxx', {NOW_GITHUB_COMMIT_REF, dburl_dev, dburl, dburl_2020})
+
   let database_url = dburl_dev
   logger.info('NOW_GITHUB_COMMIT_REF = ' + NOW_GITHUB_COMMIT_REF)
   if (NOW_GITHUB_COMMIT_REF === 'lj2019') {
     database_url = dburl
   }
-  if (NOW_GITHUB_COMMIT_REF === 'lj2020' || NOW_GITHUB_COMMIT_REF === 'master') {
+  if (['lj2020'].includes(NOW_GITHUB_COMMIT_REF || '')) {
     database_url = dburl_2020
+  }
+  if (['main'].includes(NOW_GITHUB_COMMIT_REF || '')) {
+    database_url = dburl_2021
   }
   logger.info('database_url = ' + database_url)
   if (!database_url) {

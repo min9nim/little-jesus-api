@@ -6,3 +6,7 @@ dev-start.sh
 prod-start.sh
 # db-info.ts
 yarn-error.log
+.idea
+
+.vercel
+.env
