@@ -18,7 +18,7 @@
     "if-logger": "0.10.1",
     "mingutils": "0.6.0",
     "module-alias": "^2.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.7.5",
     "ramda": "^0.26.1"
   },
